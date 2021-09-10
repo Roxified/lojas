@@ -74,7 +74,7 @@
                         $phone = $_POST['phone'];
                         $email = $_POST['email'];
 
-                        if(QueryDB("SELECT * FROM payment where pay "))
+                        if(QueryDB("SELECT * FROM payment where pay ")){}
 
 
 
