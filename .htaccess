@@ -1,0 +1,62 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !index\.php
+RewriteCond %{REQUEST_URI} !modal\save\.php
+RewriteCond %{REQUEST_URI} !ministry\index\.php
+RewriteCond %{REQUEST_URI} !ministry\assignments_materials\.php
+RewriteCond %{REQUEST_URI} !ministry\viewCategory\.php
+RewriteCond %{REQUEST_URI} !ministry\homepage\.php
+RewriteCond %{REQUEST_URI} !payout\.php
+RewriteCond %{REQUEST_URI} !subcourse\.php
+RewriteCond %{REQUEST_URI} !learners\index\.php
+RewriteCond %{REQUEST_URI} !ajax\.php
+
+RewriteCond %{REQUEST_URI} !ministry\ajaxloader\.php
+
+
+#RewriteCond %{REQUEST_URI} !cart1\.php  [L]
+
+#RewriteCond %{REQUEST_URI} !Register\.php  [L]
+#RewriteBase /
+
+
+
+#Show contents if user omit the .php extension
+RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+RewriteRule ^ /%1 [NC,L,R]
+
+
+#If user type in the .php extension, forcefully remove it
+RewriteCond %{REQUEST_FILENAME}.php -f
+ErrorDocument 404 /getme/404.php
+RewriteRule ^ %{REQUEST_URI}.php [NC,L]
+
+
+
+
+
+RewriteRule ^([a-zA-Z0-9-_]+)\/([a-zA-Z0-9-_]+)\/([a-zA-Z0-9-_]+$)\/?$ courses.php?param=$1&param2=$2&param3=$3 [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/agent/$
+RewriteRule ^([a-zA-Z0-9-_]+)\/([a-zA-Z0-9-_]+)\/?$ subcourse.php?param=$1&param2=$2&param3=$3 [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/agent/$
+RewriteRule ^([a-zA-Z0-9-_]+)\/?$ lesson.php?param=$1 [NC]
+
+RewriteEngine On
+RewriteRule ^questions/(\d+)/([a-z-]+) index.php?id=$1&title=$2 [L]
+
+
+
+
+
+
+
+
+
+
+
+
+

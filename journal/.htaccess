@@ -1,0 +1,57 @@
+RewriteEngine On
+
+
+
+RewriteCond %{REQUEST_URI} !index\.php
+RewriteCond %{REQUEST_URI} !payout\.php
+RewriteCond %{REQUEST_URI} !userhome/ads-manager\.php
+#RewriteCond %{REQUEST_URI} !modify_upload\.php  [L]
+
+#RewriteCond %{REQUEST_URI} !Register\.php  [L]
+#RewriteBase /
+
+
+
+#Show contents if user omit the .php extension
+RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+RewriteRule ^ /%1 [NC,L,R]
+
+
+#If user type in the .php extension, forcefully remove it
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^ %{REQUEST_URI}.php [NC,L]
+
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/agent/$
+RewriteCond %{REQUEST_URI} !^/blog/$
+
+RewriteRule ^([a-zA-Z0-9-_]+)\/([a-zA-Z0-9-_]+)\/([a-zA-Z0-9-_]+$)\/?$ ?link=$1&link2=$2&link3=$3 [NC]
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/agent/$
+
+RewriteRule ^([a-zA-Z0-9-_]+)\/([a-zA-Z0-9-_]+)\/?$ article_details.php?link=$1&link2=$2 [NC]
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/agent/$
+
+RewriteRule ^([a-zA-Z0-9-_]+)\/?$ journal_detail.php?link=$1 [NC]
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/agent/$
+
+
+
+
+
+
+
+
+
+
+
+
